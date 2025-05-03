@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Click</title>
+    <style>
+        #magicButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: royalblue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        #magicButton:hover {
+            background-color: deepskyblue;
+        }
+    </style>
+</head>
+<body>
+
+    <button id="magicButton">Click me!</button>
+    <p id="message"></p>
+
+    <script>
+        const button = document.getElementById("magicButton");
+        const message = document.getElementById("message");
+
+        // Click Event
+        button.addEventListener("click", () => {
+            message.textContent = "Button clicked! ✅";
+        });
+
+        // Hover Event
+        button.addEventListener("mouseenter", () => {
+            message.textContent = "You're hovering over the button! 🏄";
+        });
+
+        button.addEventListener("mouseleave", () => {
+            message.textContent = "";
+        });
+
+        // Keypress Detection
+        document.addEventListener("keydown", (event) => {
+            message.textContent = `Key pressed: ${event.key} ⌨️`;
+        });
+
+        // Secret Action: Double Click
+        button.addEventListener("dblclick", () => {
+            message.textContent = "Double-click detected! Secret action activated! 🤫✨";
+        });
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        form {
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            background: lightgray;
+            border-radius: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid gray;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <form id="signup-form">
+        <h2>Sign Up</h2>
+        <label>Email:</label>
+        <input type="email" id="email" placeholder="Enter your email">
+        <span class="error" id="emailError"></span>
+
+        <label>Password:</label>
+        <input type="password" id="password" placeholder="Enter password">
+        <span class="error" id="passwordError"></span>
+
+        <button type="submit">Register</button>
+    </form>
+
+    <script>
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const emailError = document.getElementById("emailError");
+        const passwordError = document.getElementById("passwordError");
+        const form = document.getElementById("signup-form");
+
+        function validateEmail() {
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,6}$/;
+            if (!emailInput.value.match(emailPattern)) {
+                emailError.textContent = "Invalid email format ❌";
+            } else {
+                emailError.textContent = "";
+            }
+        }
+
+        function validatePassword() {
+            if (passwordInput.value.length < 8) {
+                passwordError.textContent = "Password must be at least 8 characters ❌";
+            } else {
+                passwordError.textContent = "";
+            }
+        }
+
+        emailInput.addEventListener("input", validateEmail);
+        passwordInput.addEventListener("input", validatePassword);
+
+        form.addEventListener("submit", (event) => {
+            validateEmail();
+            validatePassword();
+
+            if (emailError.textContent || passwordError.textContent) {
+                event.preventDefault();
+            }
+        });
+    </script>
+
+</body>
+</html>
